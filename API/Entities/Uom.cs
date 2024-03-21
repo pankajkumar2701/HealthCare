@@ -45,6 +45,10 @@ namespace HealthCare.Entities
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
+        public ICollection<DispenseItemDosage>? DispenseItemDosage { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
         public ICollection<Product>? Product { get; set; }
         /// <summary>
         /// Collection navigation property representing associated 

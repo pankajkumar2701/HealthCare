@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 import { MenuService } from 'src/app/angular-app-services/menu.service';
+import { TooltipService } from 'src/app/angular-app-services/tooltip.service';
 import { LogoutComponent } from 'src/app/logout/logout.component';
 
 @Component({
@@ -18,6 +19,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
   constructor(
     private menuService: MenuService,
     public dialog: MatDialog,
+    private tooltipService: TooltipService
   ) { }
 
   ngOnInit(): void {
@@ -34,8 +36,8 @@ export class SideBarComponent implements OnInit, OnDestroy {
   }
 
   showSubMenu(event: MouseEvent): void {
-    const targetAttr = (event.target as HTMLElement);
-    const subMenuItem = (targetAttr.querySelector('.sub-nav-link') as HTMLElement);
+    const targetAttr = (event.target as HTMLElement),
+      subMenuItem = (targetAttr.querySelector('.sub-nav-link') as HTMLElement);
 
     if (subMenuItem) {
       subMenuItem.style.top = targetAttr.getBoundingClientRect().top + 'px';
@@ -43,27 +45,25 @@ export class SideBarComponent implements OnInit, OnDestroy {
     }
   }
 
-  openLogoutDialog(event: any) {
-    // active state for logout btn
-    //this.isLogoutDialogOpen = true;
+  isTooltipDisabled(element: HTMLElement): boolean {
+    return this.tooltipService.isTooltipDisabled(element);
+  }
 
-    let targetAttr = event.target.getBoundingClientRect();
-    const dialogConfig = new MatDialogConfig();
+  openLogoutDialog(event: any) {
+    const targetAttr = event.target.getBoundingClientRect(),
+      dialogConfig = new MatDialogConfig();
+
     dialogConfig.position = {
-      left: targetAttr.x + targetAttr.width + 15 + "px",
+      left: targetAttr.x + targetAttr.width + 15 + 'px',
       bottom: '15px'
     };
 
-    const dialogRef = this.dialog.open(LogoutComponent, {
+    this.dialog.open(LogoutComponent, {
       width: '250px',
       panelClass: 'logout-dialog-wrapper',
       position: dialogConfig.position,
       autoFocus: false,
       backdropClass: 'no-back-drop',
     });
-
-    // active state for logout btn
-    //dialogRef.afterClosed().subscribe(() => this.isLogoutDialogOpen = false);
   }
-
 }

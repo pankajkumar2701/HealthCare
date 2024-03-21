@@ -18,9 +18,11 @@ namespace HealthCare.Entities
         /// TenantId of the VisitType 
         /// </summary>
         public Guid? TenantId { get; set; }
+
         /// <summary>
-        /// Id of the VisitType 
+        /// Primary key for the VisitType 
         /// </summary>
+        [Key]
         public Guid? Id { get; set; }
 
         /// <summary>

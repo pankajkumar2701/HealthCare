@@ -239,10 +239,6 @@ namespace HealthCare.Entities
         [ForeignKey("Invoice")]
         public Invoice? InvoiceInvoice { get; set; }
         /// <summary>
-        /// VisitMedications of the Visit 
-        /// </summary>
-        public Guid? VisitMedications { get; set; }
-        /// <summary>
         /// Foreign key referencing the Dispense to which the Visit belongs 
         /// </summary>
         public Guid? Dispenses { get; set; }
@@ -278,6 +274,10 @@ namespace HealthCare.Entities
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Dispense>? Dispense { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<PatientPharmacyQueue>? PatientPharmacyQueue { get; set; }
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>

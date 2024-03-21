@@ -53,6 +53,10 @@ namespace HealthCare.Entities
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
+        public ICollection<InvoiceLine>? InvoiceLine { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
         public ICollection<Product>? Product { get; set; }
     }
 }

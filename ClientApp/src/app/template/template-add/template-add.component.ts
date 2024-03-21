@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable, Subject, forkJoin, takeUntil } from 'rxjs';
@@ -13,7 +13,7 @@ import { _camelCase, _toSentenceCase } from 'src/app/library/utils';
   templateUrl: './template-add.component.html',
   styleUrl: './template-add.component.scss'
 })
-export class TemplateAddComponent implements OnInit {
+export class TemplateAddComponent implements OnInit, OnDestroy {
   @Input() entityName: string = '';
   @Input() id: string = '';
   @Output() saved = new EventEmitter<boolean>();
@@ -119,18 +119,18 @@ export class TemplateAddComponent implements OnInit {
       .subscribe({
         next: data => {
           this.form = new FormGroup({});
-          const apis = this.initializeForm(this.layoutData);
+          const apis = this.initializeForm(this.layoutData, data);
           this.getOptions(data, apis);
         }
       });
   }
 
-  private initializeForm(fields: any[]): Array<Observable<any[]>> {
+  private initializeForm(fields: any[], data?: any): Array<Observable<any[]>> {
     const apis: Array<Observable<any[]>> = [];
     // Loop through the fields and add form controls
     fields.forEach(field => {
       if (field.type === 'section') {
-        apis.push(...this.initializeForm(field.fields));
+        apis.push(...this.initializeForm(field.fields, data));
       } else {
         field.fieldName = _camelCase(field.fieldName);
         const defaultValue = this.getDefaultValue(field),
@@ -145,17 +145,24 @@ export class TemplateAddComponent implements OnInit {
         if (field.dataType.toLowerCase() === 'numeric') {
           if (field.scale) {
             const scale = parseInt(field.scale),
-              regEx = RegExp("^-?[0-9]+(\\.[0-9]{0," + scale + "}){0,1}$");
+              regEx = RegExp('^-?[0-9]+(\\.[0-9]{0,' + scale + '}){0,1}$');
             validators.push(Validators.pattern(regEx));
           } else {
             validators.push(Validators.pattern(/^-?\d+$/));
           }
         }
 
+        if ((field.dataType.toLowerCase() === 'datetime' || field.dataType.toLowerCase() === 'date') && data?.[field.fieldName]) {
+          const date = Date.parse(data[field.fieldName] + 'Z'),
+            localDate = isNaN(date) ? date : new Date(data[field.fieldName] + 'Z');
+          data[field.fieldName] = localDate;
+        }
+
         this.form?.addControl(field.fieldName, new FormControl(defaultValue, validators));
         if (field.dataType.toLowerCase() === 'guid' && !this.fieldOptions[field.fieldName]) {
           this.fieldOptions[field.fieldName] = [];
-          apis.push(this.entityDataService.getRecordByUrl(field.optionsEndpoint));
+          if (field.dataSource)
+            apis.push(this.entityDataService.getRecords(field.dataSource));
         }
       }
     });

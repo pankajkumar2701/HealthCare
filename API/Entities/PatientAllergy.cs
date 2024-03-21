@@ -11,8 +11,9 @@ namespace HealthCare.Entities
     public class PatientAllergy
     {
         /// <summary>
-        /// Id of the PatientAllergy 
+        /// Primary key for the PatientAllergy 
         /// </summary>
+        [Key]
         public Guid? Id { get; set; }
         /// <summary>
         /// TenantId of the PatientAllergy 
@@ -24,11 +25,9 @@ namespace HealthCare.Entities
         /// </summary>
         [Required]
         public string Name { get; set; }
-
         /// <summary>
-        /// Primary key for the PatientAllergy 
+        /// Sequence of the PatientAllergy 
         /// </summary>
-        [Key]
         public int? Sequence { get; set; }
         /// <summary>
         /// Allergy of the PatientAllergy 

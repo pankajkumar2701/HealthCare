@@ -189,5 +189,9 @@ namespace HealthCare.Entities
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Appointment>? Appointment { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<TokenManagement>? TokenManagement { get; set; }
     }
 }

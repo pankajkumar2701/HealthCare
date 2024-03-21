@@ -19,7 +19,7 @@ namespace HealthCare.Data
             modelBuilder.Entity<Tenant>().HasKey(a => a.Id);
             modelBuilder.Entity<User>().HasKey(a => a.Id);
             modelBuilder.Entity<Role>().HasKey(a => a.Id);
-            modelBuilder.Entity<Patient>().HasKey(a => a.PatientId);
+            modelBuilder.Entity<Patient>().HasKey(a => a.Id);
             modelBuilder.Entity<Gender>().HasKey(a => a.Id);
             modelBuilder.Entity<Title>().HasKey(a => a.Id);
             modelBuilder.Entity<Address>().HasKey(a => a.Id);
@@ -29,10 +29,10 @@ namespace HealthCare.Data
             modelBuilder.Entity<Location>().HasKey(a => a.Id);
             modelBuilder.Entity<Membership>().HasKey(a => a.Id);
             modelBuilder.Entity<PatientNotes>().HasKey(a => a.Id);
-            modelBuilder.Entity<PatientAllergy>().HasKey(a => a.Sequence);
+            modelBuilder.Entity<PatientAllergy>().HasKey(a => a.Id);
             modelBuilder.Entity<PatientStatistics>().HasKey(a => a.Id);
-            modelBuilder.Entity<PatientPatientCategory>().HasKey(a => a.Id);
-            modelBuilder.Entity<PatientComorbidity>().HasKey(a => a.Sequence);
+            modelBuilder.Entity<PatientCategory>().HasKey(a => a.Id);
+            modelBuilder.Entity<PatientComorbidity>().HasKey(a => a.Id);
             modelBuilder.Entity<Comorbidity>().HasKey(a => a.Id);
             modelBuilder.Entity<ContactMember>().HasKey(a => a.Id);
             modelBuilder.Entity<PatientPayor>().HasKey(a => a.Id);
@@ -45,6 +45,14 @@ namespace HealthCare.Data
             modelBuilder.Entity<Visit>().HasKey(a => a.Id);
             modelBuilder.Entity<VisitMedicalCertificate>().HasKey(a => a.Id);
             modelBuilder.Entity<Invoice>().HasKey(a => a.Id);
+            modelBuilder.Entity<InvoiceLine>().HasKey(a => a.Id);
+            modelBuilder.Entity<InvoiceFile>().HasKey(a => a.Id);
+            modelBuilder.Entity<Dispense>().HasKey(a => a.Id);
+            modelBuilder.Entity<DispenseActivityHistory>().HasKey(a => a.Id);
+            modelBuilder.Entity<DispenseItem>().HasKey(a => a.Id);
+            modelBuilder.Entity<PatientPharmacyQueue>().HasKey(a => a.Id);
+            modelBuilder.Entity<DispenseItemDosage>().HasKey(a => a.Id);
+            modelBuilder.Entity<PaymentGateway>().HasKey(a => a.Id);
             modelBuilder.Entity<Notification>().HasKey(a => a.Id);
             modelBuilder.Entity<AppointmentReminderLog>().HasKey(a => a.Id);
             modelBuilder.Entity<AccountSettlement>().HasKey(a => a.Id);
@@ -55,6 +63,8 @@ namespace HealthCare.Data
             modelBuilder.Entity<DoctorInvestigation>().HasKey(a => a.Id);
             modelBuilder.Entity<Investigation>().HasKey(a => a.Id);
             modelBuilder.Entity<Product>().HasKey(a => a.Id);
+            modelBuilder.Entity<ProductBatch>().HasKey(a => a.Id);
+            modelBuilder.Entity<FinanceSetting>().HasKey(a => a.Id);
             modelBuilder.Entity<ProductUom>().HasKey(a => a.Id);
             modelBuilder.Entity<GstSettings>().HasKey(a => a.Id);
             modelBuilder.Entity<ProductClassification>().HasKey(a => a.Id);
@@ -74,6 +84,8 @@ namespace HealthCare.Data
             modelBuilder.Entity<VisitDiagnosis>().HasKey(a => a.Id);
             modelBuilder.Entity<VisitDiagnosisParameter>().HasKey(a => a.Id);
             modelBuilder.Entity<Diagnosis>().HasKey(a => a.Id);
+            modelBuilder.Entity<VisitType>().HasKey(a => a.Id);
+            modelBuilder.Entity<VisitMode>().HasKey(a => a.Id);
             modelBuilder.Entity<VisitChiefComplaint>().HasKey(a => a.Id);
             modelBuilder.Entity<ChiefComplaint>().HasKey(a => a.Id);
             modelBuilder.Entity<VisitChiefComplaintParameter>().HasKey(a => a.Id);
@@ -82,7 +94,30 @@ namespace HealthCare.Data
             modelBuilder.Entity<Uom>().HasKey(a => a.Id);
             modelBuilder.Entity<Doctor>().HasKey(a => a.Id);
             modelBuilder.Entity<Appointment>().HasKey(a => a.Id);
+            modelBuilder.Entity<TokenManagement>().HasKey(a => a.Id);
             modelBuilder.Entity<DayVisit>().HasKey(a => a.Id);
+            modelBuilder.Entity<GoodsReceipt>().HasKey(a => a.Id);
+            modelBuilder.Entity<GoodsReceiptPurchaseOrderRelation>().HasKey(a => a.Id);
+            modelBuilder.Entity<GoodsReceiptFile>().HasKey(a => a.Id);
+            modelBuilder.Entity<GoodsReceiptActivityHistory>().HasKey(a => a.Id);
+            modelBuilder.Entity<GoodsReceiptItem>().HasKey(a => a.Id);
+            modelBuilder.Entity<GoodsReturn>().HasKey(a => a.Id);
+            modelBuilder.Entity<SubReason>().HasKey(a => a.Id);
+            modelBuilder.Entity<GoodsReturnItem>().HasKey(a => a.Id);
+            modelBuilder.Entity<GoodsReturnFile>().HasKey(a => a.Id);
+            modelBuilder.Entity<PriceList>().HasKey(a => a.Id);
+            modelBuilder.Entity<PriceListVersion>().HasKey(a => a.Id);
+            modelBuilder.Entity<PriceListItem>().HasKey(a => a.Id);
+            modelBuilder.Entity<PriceListComponent>().HasKey(a => a.Id);
+            modelBuilder.Entity<PurchaseOrder>().HasKey(a => a.Id);
+            modelBuilder.Entity<PurchaseOrderLine>().HasKey(a => a.Id);
+            modelBuilder.Entity<PurchaseOrderFile>().HasKey(a => a.Id);
+            modelBuilder.Entity<Requisition>().HasKey(a => a.Id);
+            modelBuilder.Entity<RequisitionLine>().HasKey(a => a.Id);
+            modelBuilder.Entity<RequisitionFile>().HasKey(a => a.Id);
+            modelBuilder.Entity<StockAdjustment>().HasKey(a => a.Id);
+            modelBuilder.Entity<StockAdjustmentItem>().HasKey(a => a.Id);
+            modelBuilder.Entity<StockAdjustmentFile>().HasKey(a => a.Id);
             modelBuilder.Entity<UserInRole>().HasOne(a => a.Tenant).WithMany(b => b.UserInRole).HasForeignKey(c => c.TenantId);
             modelBuilder.Entity<UserInRole>().HasOne(a => a.Role).WithMany(b => b.UserInRole).HasForeignKey(c => c.RoleId);
             modelBuilder.Entity<UserInRole>().HasOne(a => a.User).WithMany(b => b.UserInRole).HasForeignKey(c => c.UserId);
@@ -110,7 +145,7 @@ namespace HealthCare.Data
             modelBuilder.Entity<Patient>().HasOne(a => a.Membership).WithMany(b => b.Patient).HasForeignKey(c => c.MembershipId);
             modelBuilder.Entity<Patient>().HasOne(a => a.PatientAllergyPatientAllergy).WithMany(b => b.Patient).HasForeignKey(c => c.PatientAllergy);
             modelBuilder.Entity<Patient>().HasOne(a => a.PatientStatisticsPatientStatistics).WithMany(b => b.Patient).HasForeignKey(c => c.PatientStatistics);
-            modelBuilder.Entity<Patient>().HasOne(a => a.PatientPatientCategoriesPatientPatientCategory).WithMany(b => b.Patient).HasForeignKey(c => c.PatientPatientCategories);
+            modelBuilder.Entity<Patient>().HasOne(a => a.PatientCategoriesPatientCategory).WithMany(b => b.Patient).HasForeignKey(c => c.PatientCategories);
             modelBuilder.Entity<Patient>().HasOne(a => a.PatientComorbiditiesPatientComorbidity).WithMany(b => b.Patient).HasForeignKey(c => c.PatientComorbidities);
             modelBuilder.Entity<Patient>().HasOne(a => a.ContactMembersContactMember).WithMany(b => b.Patient).HasForeignKey(c => c.ContactMembers);
             modelBuilder.Entity<Patient>().HasOne(a => a.PatientPayorsPatientPayor).WithMany(b => b.Patient).HasForeignKey(c => c.PatientPayors);
@@ -127,7 +162,7 @@ namespace HealthCare.Data
             modelBuilder.Entity<PatientNotes>().HasOne(a => a.Patient).WithMany(b => b.PatientNotes).HasForeignKey(c => c.PatientId);
             modelBuilder.Entity<PatientAllergy>().HasOne(a => a.Patient).WithMany(b => b.PatientAllergy).HasForeignKey(c => c.PatientId);
             modelBuilder.Entity<PatientStatistics>().HasOne(a => a.Patient).WithMany(b => b.PatientStatistics).HasForeignKey(c => c.PatientId);
-            modelBuilder.Entity<PatientPatientCategory>().HasOne(a => a.Patient).WithMany(b => b.PatientPatientCategory).HasForeignKey(c => c.PatientId);
+            modelBuilder.Entity<PatientCategory>().HasOne(a => a.Patient).WithMany(b => b.PatientCategory).HasForeignKey(c => c.PatientId);
             modelBuilder.Entity<PatientComorbidity>().HasOne(a => a.Comorbidity).WithMany(b => b.PatientComorbidity).HasForeignKey(c => c.ComorbidityId);
             modelBuilder.Entity<PatientComorbidity>().HasOne(a => a.Patient).WithMany(b => b.PatientComorbidity).HasForeignKey(c => c.PatientId);
             modelBuilder.Entity<ContactMember>().HasOne(a => a.Patient).WithMany(b => b.ContactMember).HasForeignKey(c => c.PatientId);
@@ -164,6 +199,7 @@ namespace HealthCare.Data
             modelBuilder.Entity<VisitMedicalCertificate>().HasOne(a => a.Patient).WithMany(b => b.VisitMedicalCertificate).HasForeignKey(c => c.PatientId);
             modelBuilder.Entity<VisitMedicalCertificate>().HasOne(a => a.Visit).WithMany(b => b.VisitMedicalCertificate).HasForeignKey(c => c.VisitId);
             modelBuilder.Entity<VisitMedicalCertificate>().HasOne(a => a.Product).WithMany(b => b.VisitMedicalCertificate).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<VisitMedicalCertificate>().HasOne(a => a.InvoiceLine).WithMany(b => b.VisitMedicalCertificate).HasForeignKey(c => c.InvoiceLineId);
             modelBuilder.Entity<Invoice>().HasOne(a => a.Visit).WithMany(b => b.Invoice).HasForeignKey(c => c.VisitId);
             modelBuilder.Entity<Invoice>().HasOne(a => a.Patient).WithMany(b => b.Invoice).HasForeignKey(c => c.PatientId);
             modelBuilder.Entity<Invoice>().HasOne(a => a.Doctor).WithMany(b => b.Invoice).HasForeignKey(c => c.DoctorId);
@@ -172,13 +208,34 @@ namespace HealthCare.Data
             modelBuilder.Entity<Invoice>().HasOne(a => a.AppointmentAppointment).WithMany(b => b.Invoice).HasForeignKey(c => c.Appointment);
             modelBuilder.Entity<Invoice>().HasOne(a => a.DayVisitDayVisit).WithMany(b => b.Invoice).HasForeignKey(c => c.DayVisit);
             modelBuilder.Entity<Invoice>().HasOne(a => a.ReferredByIdAddress).WithMany(b => b.Invoice).HasForeignKey(c => c.ReferredById);
+            modelBuilder.Entity<Invoice>().HasOne(a => a.InvoiceFilesInvoiceFile).WithMany(b => b.Invoice).HasForeignKey(c => c.InvoiceFiles);
             modelBuilder.Entity<Invoice>().HasOne(a => a.PayorIdAddress).WithMany().HasForeignKey(c => c.PayorId);
+            modelBuilder.Entity<Invoice>().HasOne(a => a.InvoiceLine).WithMany(b => b.Invoice).HasForeignKey(c => c.InvoiceLineId);
             modelBuilder.Entity<Invoice>().HasOne(a => a.DispenseDispense).WithMany(b => b.Invoice).HasForeignKey(c => c.Dispense);
+            modelBuilder.Entity<InvoiceLine>().HasOne(a => a.Invoice).WithMany(b => b.InvoiceLine).HasForeignKey(c => c.InvoiceId);
+            modelBuilder.Entity<InvoiceLine>().HasOne(a => a.Product).WithMany(b => b.InvoiceLine).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<InvoiceLine>().HasOne(a => a.ProductBatch).WithMany(b => b.InvoiceLine).HasForeignKey(c => c.ProductBatchId);
+            modelBuilder.Entity<InvoiceLine>().HasOne(a => a.ProductUom).WithMany(b => b.InvoiceLine).HasForeignKey(c => c.ProductUomId);
+            modelBuilder.Entity<InvoiceLine>().HasOne(a => a.GstSettings).WithMany(b => b.InvoiceLine).HasForeignKey(c => c.GstSettingsId);
+            modelBuilder.Entity<InvoiceFile>().HasOne(a => a.Invoice).WithMany(b => b.InvoiceFile).HasForeignKey(c => c.InvoiceId);
             modelBuilder.Entity<Dispense>().HasOne(a => a.Patient).WithMany(b => b.Dispense).HasForeignKey(c => c.PatientId);
             modelBuilder.Entity<Dispense>().HasOne(a => a.Visit).WithMany(b => b.Dispense).HasForeignKey(c => c.VisitId);
             modelBuilder.Entity<Dispense>().HasOne(a => a.Invoice).WithMany(b => b.Dispense).HasForeignKey(c => c.InvoiceId);
             modelBuilder.Entity<Dispense>().HasOne(a => a.Location).WithMany(b => b.Dispense).HasForeignKey(c => c.LocationId);
             modelBuilder.Entity<Dispense>().HasOne(a => a.LocationLocation).WithMany().HasForeignKey(c => c.Location);
+            modelBuilder.Entity<Dispense>().HasOne(a => a.DispenseActivityHistoryDispenseActivityHistory).WithMany(b => b.Dispense).HasForeignKey(c => c.DispenseActivityHistory);
+            modelBuilder.Entity<Dispense>().HasOne(a => a.DispenseItemsDispenseItem).WithMany(b => b.Dispense).HasForeignKey(c => c.DispenseItems);
+            modelBuilder.Entity<Dispense>().HasOne(a => a.PatientPharmacyQueuesPatientPharmacyQueue).WithMany(b => b.Dispense).HasForeignKey(c => c.PatientPharmacyQueues);
+            modelBuilder.Entity<DispenseActivityHistory>().HasOne(a => a.Dispense).WithMany(b => b.DispenseActivityHistory).HasForeignKey(c => c.DispenseId);
+            modelBuilder.Entity<DispenseItem>().HasOne(a => a.Dispense).WithMany(b => b.DispenseItem).HasForeignKey(c => c.DispenseId);
+            modelBuilder.Entity<DispenseItem>().HasOne(a => a.Product).WithMany(b => b.DispenseItem).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<DispenseItem>().HasOne(a => a.ProductBatch).WithMany(b => b.DispenseItem).HasForeignKey(c => c.ProductBatchId);
+            modelBuilder.Entity<DispenseItem>().HasOne(a => a.DispenseItemDosageDispenseItemDosage).WithMany(b => b.DispenseItem).HasForeignKey(c => c.DispenseItemDosage);
+            modelBuilder.Entity<PatientPharmacyQueue>().HasOne(a => a.Patient).WithMany(b => b.PatientPharmacyQueue).HasForeignKey(c => c.PatientId);
+            modelBuilder.Entity<PatientPharmacyQueue>().HasOne(a => a.Visit).WithMany(b => b.PatientPharmacyQueue).HasForeignKey(c => c.VisitId);
+            modelBuilder.Entity<PatientPharmacyQueue>().HasOne(a => a.Dispense).WithMany(b => b.PatientPharmacyQueue).HasForeignKey(c => c.DispenseId);
+            modelBuilder.Entity<DispenseItemDosage>().HasOne(a => a.DispenseItem).WithMany(b => b.DispenseItemDosage).HasForeignKey(c => c.DispenseItemId);
+            modelBuilder.Entity<DispenseItemDosage>().HasOne(a => a.Uom).WithMany(b => b.DispenseItemDosage).HasForeignKey(c => c.UomId);
             modelBuilder.Entity<PaymentGateway>().HasOne(a => a.Appointment).WithMany(b => b.PaymentGateway).HasForeignKey(c => c.AppointmentId);
             modelBuilder.Entity<PaymentGateway>().HasOne(a => a.Doctor).WithMany(b => b.PaymentGateway).HasForeignKey(c => c.DoctorId);
             modelBuilder.Entity<PaymentGateway>().HasOne(a => a.Patient).WithMany(b => b.PaymentGateway).HasForeignKey(c => c.PatientId);
@@ -198,11 +255,13 @@ namespace HealthCare.Data
             modelBuilder.Entity<Payment>().HasOne(a => a.Location).WithMany(b => b.Payment).HasForeignKey(c => c.LocationId);
             modelBuilder.Entity<VisitInvestigation>().HasOne(a => a.DoctorInvestigation).WithMany(b => b.VisitInvestigation).HasForeignKey(c => c.DoctorInvestigationId);
             modelBuilder.Entity<VisitInvestigation>().HasOne(a => a.Patient).WithMany(b => b.VisitInvestigation).HasForeignKey(c => c.PatientId);
+            modelBuilder.Entity<VisitInvestigation>().HasOne(a => a.InvoiceLine).WithMany(b => b.VisitInvestigation).HasForeignKey(c => c.InvoiceLineId);
             modelBuilder.Entity<DoctorInvestigation>().HasOne(a => a.Investigation).WithMany(b => b.DoctorInvestigation).HasForeignKey(c => c.InvestigationId);
             modelBuilder.Entity<DoctorInvestigation>().HasOne(a => a.Doctor).WithMany(b => b.DoctorInvestigation).HasForeignKey(c => c.DoctorId);
             modelBuilder.Entity<Investigation>().HasOne(a => a.Product).WithMany(b => b.Investigation).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<Product>().HasOne(a => a.ProductCategory).WithMany(b => b.Product).HasForeignKey(c => c.ProductCategoryId);
             modelBuilder.Entity<Product>().HasOne(a => a.Medication).WithMany(b => b.Product).HasForeignKey(c => c.MedicationId);
-            modelBuilder.Entity<Product>().HasOne(a => a.ProductCategoryProductCategory).WithMany(b => b.Product).HasForeignKey(c => c.ProductCategory);
+            modelBuilder.Entity<Product>().HasOne(a => a.ProductCategoryProductCategory).WithMany().HasForeignKey(c => c.ProductCategory);
             modelBuilder.Entity<Product>().HasOne(a => a.InvestigationInvestigation).WithMany(b => b.Product).HasForeignKey(c => c.Investigation);
             modelBuilder.Entity<Product>().HasOne(a => a.ProcedureProcedure).WithMany(b => b.Product).HasForeignKey(c => c.Procedure);
             modelBuilder.Entity<Product>().HasOne(a => a.ContactAddress).WithMany(b => b.Product).HasForeignKey(c => c.Contact);
@@ -213,6 +272,13 @@ namespace HealthCare.Data
             modelBuilder.Entity<Product>().HasOne(a => a.UomUom).WithMany(b => b.Product).HasForeignKey(c => c.Uom);
             modelBuilder.Entity<Product>().HasOne(a => a.GstSettingsGstSettings).WithMany(b => b.Product).HasForeignKey(c => c.GstSettings);
             modelBuilder.Entity<Product>().HasOne(a => a.ProductUomsProductUom).WithMany(b => b.Product).HasForeignKey(c => c.ProductUoms);
+            modelBuilder.Entity<Product>().HasOne(a => a.FinanceSettingsFinanceSetting).WithMany(b => b.Product).HasForeignKey(c => c.FinanceSettings);
+            modelBuilder.Entity<Product>().HasOne(a => a.ProductBatchProductBatch).WithMany(b => b.Product).HasForeignKey(c => c.ProductBatch);
+            modelBuilder.Entity<ProductBatch>().HasOne(a => a.ProductUom).WithMany(b => b.ProductBatch).HasForeignKey(c => c.ProductUomId);
+            modelBuilder.Entity<ProductBatch>().HasOne(a => a.LocationLocation).WithMany(b => b.ProductBatch).HasForeignKey(c => c.Location);
+            modelBuilder.Entity<ProductBatch>().HasOne(a => a.ProductProduct).WithMany(b => b.ProductBatch).HasForeignKey(c => c.Product);
+            modelBuilder.Entity<ProductBatch>().HasOne(a => a.InvoiceLine).WithMany(b => b.ProductBatch).HasForeignKey(c => c.InvoiceLineId);
+            modelBuilder.Entity<FinanceSetting>().HasOne(a => a.Product).WithMany(b => b.FinanceSetting).HasForeignKey(c => c.ProductId);
             modelBuilder.Entity<ProductUom>().HasOne(a => a.Product).WithMany(b => b.ProductUom).HasForeignKey(c => c.ProductId);
             modelBuilder.Entity<ProductUom>().HasOne(a => a.Uom).WithMany(b => b.ProductUom).HasForeignKey(c => c.UomId);
             modelBuilder.Entity<ProductClassification>().HasOne(a => a.ProductsProduct).WithMany(b => b.ProductClassification).HasForeignKey(c => c.Products);
@@ -268,6 +334,11 @@ namespace HealthCare.Data
             modelBuilder.Entity<Appointment>().HasOne(a => a.DayVisitsDayVisit).WithMany(b => b.Appointment).HasForeignKey(c => c.DayVisits);
             modelBuilder.Entity<Appointment>().HasOne(a => a.NotificationsNotification).WithMany(b => b.Appointment).HasForeignKey(c => c.Notifications);
             modelBuilder.Entity<Appointment>().HasOne(a => a.PaymentGatewaysPaymentGateway).WithMany(b => b.Appointment).HasForeignKey(c => c.PaymentGateways);
+            modelBuilder.Entity<Appointment>().HasOne(a => a.TokenManagementTokenManagement).WithMany(b => b.Appointment).HasForeignKey(c => c.TokenManagement);
+            modelBuilder.Entity<TokenManagement>().HasOne(a => a.Patient).WithMany(b => b.TokenManagement).HasForeignKey(c => c.PatientId);
+            modelBuilder.Entity<TokenManagement>().HasOne(a => a.Doctor).WithMany(b => b.TokenManagement).HasForeignKey(c => c.DoctorId);
+            modelBuilder.Entity<TokenManagement>().HasOne(a => a.Location).WithMany(b => b.TokenManagement).HasForeignKey(c => c.LocationId);
+            modelBuilder.Entity<TokenManagement>().HasOne(a => a.DayVisit).WithMany(b => b.TokenManagement).HasForeignKey(c => c.DayVisitId);
             modelBuilder.Entity<DayVisit>().HasOne(a => a.Patient).WithMany(b => b.DayVisit).HasForeignKey(c => c.PatientId);
             modelBuilder.Entity<DayVisit>().HasOne(a => a.Doctor).WithMany(b => b.DayVisit).HasForeignKey(c => c.DoctorId);
             modelBuilder.Entity<DayVisit>().HasOne(a => a.Visit).WithMany(b => b.DayVisit).HasForeignKey(c => c.VisitId);
@@ -280,6 +351,70 @@ namespace HealthCare.Data
             modelBuilder.Entity<DayVisit>().HasOne(a => a.AppointmentAppointment).WithMany().HasForeignKey(c => c.Appointment);
             modelBuilder.Entity<DayVisit>().HasOne(a => a.InvoiceInvoice).WithMany().HasForeignKey(c => c.Invoice);
             modelBuilder.Entity<DayVisit>().HasOne(a => a.LocationLocation).WithMany().HasForeignKey(c => c.Location);
+            modelBuilder.Entity<GoodsReceipt>().HasOne(a => a.Location).WithMany(b => b.GoodsReceipt).HasForeignKey(c => c.LocationId);
+            modelBuilder.Entity<GoodsReceipt>().HasOne(a => a.GoodsReceiptItemGoodsReceiptItem).WithMany(b => b.GoodsReceipt).HasForeignKey(c => c.GoodsReceiptItem);
+            modelBuilder.Entity<GoodsReceipt>().HasOne(a => a.GoodsReturnsGoodsReturn).WithMany(b => b.GoodsReceipt).HasForeignKey(c => c.GoodsReturns);
+            modelBuilder.Entity<GoodsReceipt>().HasOne(a => a.GoodsReceiptActivityHistoryGoodsReceiptActivityHistory).WithMany(b => b.GoodsReceipt).HasForeignKey(c => c.GoodsReceiptActivityHistory);
+            modelBuilder.Entity<GoodsReceipt>().HasOne(a => a.GoodsReceiptFileGoodsReceiptFile).WithMany(b => b.GoodsReceipt).HasForeignKey(c => c.GoodsReceiptFile);
+            modelBuilder.Entity<GoodsReceipt>().HasOne(a => a.GoodsReceiptPurchaseOrderRelationGoodsReceiptPurchaseOrderRelation).WithMany(b => b.GoodsReceipt).HasForeignKey(c => c.GoodsReceiptPurchaseOrderRelation);
+            modelBuilder.Entity<GoodsReceiptPurchaseOrderRelation>().HasOne(a => a.GoodsReceipt).WithMany(b => b.GoodsReceiptPurchaseOrderRelation).HasForeignKey(c => c.GoodsReceiptId);
+            modelBuilder.Entity<GoodsReceiptPurchaseOrderRelation>().HasOne(a => a.PurchaseOrder).WithMany(b => b.GoodsReceiptPurchaseOrderRelation).HasForeignKey(c => c.PurchaseOrderId);
+            modelBuilder.Entity<GoodsReceiptFile>().HasOne(a => a.GoodsReceipt).WithMany(b => b.GoodsReceiptFile).HasForeignKey(c => c.GoodsReceiptId);
+            modelBuilder.Entity<GoodsReceiptActivityHistory>().HasOne(a => a.GoodsReceipt).WithMany(b => b.GoodsReceiptActivityHistory).HasForeignKey(c => c.GoodsReceiptId);
+            modelBuilder.Entity<GoodsReceiptItem>().HasOne(a => a.GoodsReceipt).WithMany(b => b.GoodsReceiptItem).HasForeignKey(c => c.GoodsReceiptId);
+            modelBuilder.Entity<GoodsReceiptItem>().HasOne(a => a.Product).WithMany(b => b.GoodsReceiptItem).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<GoodsReceiptItem>().HasOne(a => a.ProductBatch).WithMany(b => b.GoodsReceiptItem).HasForeignKey(c => c.ProductBatchId);
+            modelBuilder.Entity<GoodsReceiptItem>().HasOne(a => a.PurchaseOrder).WithMany(b => b.GoodsReceiptItem).HasForeignKey(c => c.PurchaseOrderId);
+            modelBuilder.Entity<GoodsReceiptItem>().HasOne(a => a.PurchaseOrderLine).WithMany(b => b.GoodsReceiptItem).HasForeignKey(c => c.PurchaseOrderLineId);
+            modelBuilder.Entity<GoodsReturn>().HasOne(a => a.GoodsReceipt).WithMany(b => b.GoodsReturn).HasForeignKey(c => c.GoodsReceiptId);
+            modelBuilder.Entity<GoodsReturn>().HasOne(a => a.Location).WithMany(b => b.GoodsReturn).HasForeignKey(c => c.LocationId);
+            modelBuilder.Entity<GoodsReturn>().HasOne(a => a.GoodsReturnFileGoodsReturnFile).WithMany(b => b.GoodsReturn).HasForeignKey(c => c.GoodsReturnFile);
+            modelBuilder.Entity<GoodsReturn>().HasOne(a => a.GoodsReturnItemGoodsReturnItem).WithMany(b => b.GoodsReturn).HasForeignKey(c => c.GoodsReturnItem);
+            modelBuilder.Entity<GoodsReturn>().HasOne(a => a.SubReasonSubReason).WithMany(b => b.GoodsReturn).HasForeignKey(c => c.SubReason);
+            modelBuilder.Entity<SubReason>().HasOne(a => a.GoodsReturnsGoodsReturn).WithMany(b => b.SubReason).HasForeignKey(c => c.GoodsReturns);
+            modelBuilder.Entity<GoodsReturnItem>().HasOne(a => a.GoodsReturn).WithMany(b => b.GoodsReturnItem).HasForeignKey(c => c.GoodsReturnId);
+            modelBuilder.Entity<GoodsReturnItem>().HasOne(a => a.Product).WithMany(b => b.GoodsReturnItem).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<GoodsReturnItem>().HasOne(a => a.ProductBatch).WithMany(b => b.GoodsReturnItem).HasForeignKey(c => c.ProductBatchId);
+            modelBuilder.Entity<GoodsReturnItem>().HasOne(a => a.GoodsReceiptItem).WithMany(b => b.GoodsReturnItem).HasForeignKey(c => c.GoodsReceiptItemId);
+            modelBuilder.Entity<GoodsReturnItem>().HasOne(a => a.ProductUomProductUom).WithMany(b => b.GoodsReturnItem).HasForeignKey(c => c.ProductUom);
+            modelBuilder.Entity<GoodsReturnItem>().HasOne(a => a.SubReasonSubReason).WithMany(b => b.GoodsReturnItem).HasForeignKey(c => c.SubReason);
+            modelBuilder.Entity<GoodsReturnFile>().HasOne(a => a.GoodsReturn).WithMany(b => b.GoodsReturnFile).HasForeignKey(c => c.GoodsReturnId);
+            modelBuilder.Entity<PriceList>().HasOne(a => a.PriceListComponentsPriceListComponent).WithMany(b => b.PriceList).HasForeignKey(c => c.PriceListComponents);
+            modelBuilder.Entity<PriceList>().HasOne(a => a.PriceListItemsPriceListItem).WithMany(b => b.PriceList).HasForeignKey(c => c.PriceListItems);
+            modelBuilder.Entity<PriceList>().HasOne(a => a.PriceListVersionsPriceListVersion).WithMany(b => b.PriceList).HasForeignKey(c => c.PriceListVersions);
+            modelBuilder.Entity<PriceListVersion>().HasOne(a => a.PriceList).WithMany(b => b.PriceListVersion).HasForeignKey(c => c.PriceListId);
+            modelBuilder.Entity<PriceListItem>().HasOne(a => a.PriceList).WithMany(b => b.PriceListItem).HasForeignKey(c => c.PriceListId);
+            modelBuilder.Entity<PriceListItem>().HasOne(a => a.Product).WithMany(b => b.PriceListItem).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<PriceListItem>().HasOne(a => a.ProductUom).WithMany(b => b.PriceListItem).HasForeignKey(c => c.ProductUomId);
+            modelBuilder.Entity<PriceListComponent>().HasOne(a => a.PriceList).WithMany(b => b.PriceListComponent).HasForeignKey(c => c.PriceListId);
+            modelBuilder.Entity<PriceListComponent>().HasOne(a => a.LocationLocation).WithMany(b => b.PriceListComponent).HasForeignKey(c => c.Location);
+            modelBuilder.Entity<PriceListComponent>().HasOne(a => a.Membership).WithMany(b => b.PriceListComponent).HasForeignKey(c => c.MembershipId);
+            modelBuilder.Entity<PurchaseOrder>().HasOne(a => a.Location).WithMany(b => b.PurchaseOrder).HasForeignKey(c => c.LocationId);
+            modelBuilder.Entity<PurchaseOrder>().HasOne(a => a.PurchaseOrderFilePurchaseOrderFile).WithMany(b => b.PurchaseOrder).HasForeignKey(c => c.PurchaseOrderFile);
+            modelBuilder.Entity<PurchaseOrder>().HasOne(a => a.RequisitionRequisition).WithMany(b => b.PurchaseOrder).HasForeignKey(c => c.Requisition);
+            modelBuilder.Entity<PurchaseOrderLine>().HasOne(a => a.PurchaseOrder).WithMany(b => b.PurchaseOrderLine).HasForeignKey(c => c.PurchaseOrderId);
+            modelBuilder.Entity<PurchaseOrderLine>().HasOne(a => a.Product).WithMany(b => b.PurchaseOrderLine).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<PurchaseOrderLine>().HasOne(a => a.ProductUom).WithMany(b => b.PurchaseOrderLine).HasForeignKey(c => c.ProductUomId);
+            modelBuilder.Entity<PurchaseOrderLine>().HasOne(a => a.Requisition).WithMany(b => b.PurchaseOrderLine).HasForeignKey(c => c.RequisitionId);
+            modelBuilder.Entity<PurchaseOrderLine>().HasOne(a => a.RequisitionLine).WithMany(b => b.PurchaseOrderLine).HasForeignKey(c => c.RequisitionLineId);
+            modelBuilder.Entity<PurchaseOrderLine>().HasOne(a => a.GoodsReceipt).WithMany(b => b.PurchaseOrderLine).HasForeignKey(c => c.GoodsReceiptId);
+            modelBuilder.Entity<PurchaseOrderFile>().HasOne(a => a.PurchaseOrder).WithMany(b => b.PurchaseOrderFile).HasForeignKey(c => c.PurchaseOrderId);
+            modelBuilder.Entity<Requisition>().HasOne(a => a.Location).WithMany(b => b.Requisition).HasForeignKey(c => c.LocationId);
+            modelBuilder.Entity<Requisition>().HasOne(a => a.RequisitionFileRequisitionFile).WithMany(b => b.Requisition).HasForeignKey(c => c.RequisitionFile);
+            modelBuilder.Entity<RequisitionLine>().HasOne(a => a.Requisition).WithMany(b => b.RequisitionLine).HasForeignKey(c => c.RequisitionId);
+            modelBuilder.Entity<RequisitionLine>().HasOne(a => a.Product).WithMany(b => b.RequisitionLine).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<RequisitionLine>().HasOne(a => a.ProductUom).WithMany(b => b.RequisitionLine).HasForeignKey(c => c.ProductUomId);
+            modelBuilder.Entity<RequisitionLine>().HasOne(a => a.PurchaseOrder).WithMany(b => b.RequisitionLine).HasForeignKey(c => c.PurchaseOrderId);
+            modelBuilder.Entity<RequisitionLine>().HasOne(a => a.PurchaseOrderLine).WithMany(b => b.RequisitionLine).HasForeignKey(c => c.PurchaseOrderLineId);
+            modelBuilder.Entity<RequisitionFile>().HasOne(a => a.Requisition).WithMany(b => b.RequisitionFile).HasForeignKey(c => c.RequisitionId);
+            modelBuilder.Entity<StockAdjustment>().HasOne(a => a.Location).WithMany(b => b.StockAdjustment).HasForeignKey(c => c.LocationId);
+            modelBuilder.Entity<StockAdjustment>().HasOne(a => a.StockAdjustmentItemStockAdjustmentItem).WithMany(b => b.StockAdjustment).HasForeignKey(c => c.StockAdjustmentItem);
+            modelBuilder.Entity<StockAdjustment>().HasOne(a => a.StockAdjustmentFileStockAdjustmentFile).WithMany(b => b.StockAdjustment).HasForeignKey(c => c.StockAdjustmentFile);
+            modelBuilder.Entity<StockAdjustmentItem>().HasOne(a => a.StockAdjustment).WithMany(b => b.StockAdjustmentItem).HasForeignKey(c => c.StockAdjustmentId);
+            modelBuilder.Entity<StockAdjustmentItem>().HasOne(a => a.Product).WithMany(b => b.StockAdjustmentItem).HasForeignKey(c => c.ProductId);
+            modelBuilder.Entity<StockAdjustmentItem>().HasOne(a => a.ProductBatch).WithMany(b => b.StockAdjustmentItem).HasForeignKey(c => c.ProductBatchId);
+            modelBuilder.Entity<StockAdjustmentItem>().HasOne(a => a.ProductUom).WithMany(b => b.StockAdjustmentItem).HasForeignKey(c => c.ProductUomId);
+            modelBuilder.Entity<StockAdjustmentFile>().HasOne(a => a.StockAdjustment).WithMany(b => b.StockAdjustmentFile).HasForeignKey(c => c.StockAdjustmentId);
         }
 
         public DbSet<UserInRole> UserInRole { get; set; }
@@ -301,7 +436,7 @@ namespace HealthCare.Data
         public DbSet<PatientNotes> PatientNotes { get; set; }
         public DbSet<PatientAllergy> PatientAllergy { get; set; }
         public DbSet<PatientStatistics> PatientStatistics { get; set; }
-        public DbSet<PatientPatientCategory> PatientPatientCategory { get; set; }
+        public DbSet<PatientCategory> PatientCategory { get; set; }
         public DbSet<PatientComorbidity> PatientComorbidity { get; set; }
         public DbSet<Comorbidity> Comorbidity { get; set; }
         public DbSet<ContactMember> ContactMember { get; set; }
@@ -315,7 +450,13 @@ namespace HealthCare.Data
         public DbSet<Visit> Visit { get; set; }
         public DbSet<VisitMedicalCertificate> VisitMedicalCertificate { get; set; }
         public DbSet<Invoice> Invoice { get; set; }
+        public DbSet<InvoiceLine> InvoiceLine { get; set; }
+        public DbSet<InvoiceFile> InvoiceFile { get; set; }
         public DbSet<Dispense> Dispense { get; set; }
+        public DbSet<DispenseActivityHistory> DispenseActivityHistory { get; set; }
+        public DbSet<DispenseItem> DispenseItem { get; set; }
+        public DbSet<PatientPharmacyQueue> PatientPharmacyQueue { get; set; }
+        public DbSet<DispenseItemDosage> DispenseItemDosage { get; set; }
         public DbSet<PaymentGateway> PaymentGateway { get; set; }
         public DbSet<Notification> Notification { get; set; }
         public DbSet<AppointmentReminderLog> AppointmentReminderLog { get; set; }
@@ -327,6 +468,8 @@ namespace HealthCare.Data
         public DbSet<DoctorInvestigation> DoctorInvestigation { get; set; }
         public DbSet<Investigation> Investigation { get; set; }
         public DbSet<Product> Product { get; set; }
+        public DbSet<ProductBatch> ProductBatch { get; set; }
+        public DbSet<FinanceSetting> FinanceSetting { get; set; }
         public DbSet<ProductUom> ProductUom { get; set; }
         public DbSet<GstSettings> GstSettings { get; set; }
         public DbSet<ProductClassification> ProductClassification { get; set; }
@@ -356,6 +499,29 @@ namespace HealthCare.Data
         public DbSet<Uom> Uom { get; set; }
         public DbSet<Doctor> Doctor { get; set; }
         public DbSet<Appointment> Appointment { get; set; }
+        public DbSet<TokenManagement> TokenManagement { get; set; }
         public DbSet<DayVisit> DayVisit { get; set; }
+        public DbSet<GoodsReceipt> GoodsReceipt { get; set; }
+        public DbSet<GoodsReceiptPurchaseOrderRelation> GoodsReceiptPurchaseOrderRelation { get; set; }
+        public DbSet<GoodsReceiptFile> GoodsReceiptFile { get; set; }
+        public DbSet<GoodsReceiptActivityHistory> GoodsReceiptActivityHistory { get; set; }
+        public DbSet<GoodsReceiptItem> GoodsReceiptItem { get; set; }
+        public DbSet<GoodsReturn> GoodsReturn { get; set; }
+        public DbSet<SubReason> SubReason { get; set; }
+        public DbSet<GoodsReturnItem> GoodsReturnItem { get; set; }
+        public DbSet<GoodsReturnFile> GoodsReturnFile { get; set; }
+        public DbSet<PriceList> PriceList { get; set; }
+        public DbSet<PriceListVersion> PriceListVersion { get; set; }
+        public DbSet<PriceListItem> PriceListItem { get; set; }
+        public DbSet<PriceListComponent> PriceListComponent { get; set; }
+        public DbSet<PurchaseOrder> PurchaseOrder { get; set; }
+        public DbSet<PurchaseOrderLine> PurchaseOrderLine { get; set; }
+        public DbSet<PurchaseOrderFile> PurchaseOrderFile { get; set; }
+        public DbSet<Requisition> Requisition { get; set; }
+        public DbSet<RequisitionLine> RequisitionLine { get; set; }
+        public DbSet<RequisitionFile> RequisitionFile { get; set; }
+        public DbSet<StockAdjustment> StockAdjustment { get; set; }
+        public DbSet<StockAdjustmentItem> StockAdjustmentItem { get; set; }
+        public DbSet<StockAdjustmentFile> StockAdjustmentFile { get; set; }
     }
 }

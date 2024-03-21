@@ -191,6 +191,10 @@ namespace HealthCare.Entities
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
+        public ICollection<TokenManagement>? TokenManagement { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
         public ICollection<DayVisit>? DayVisit { get; set; }
     }
 }

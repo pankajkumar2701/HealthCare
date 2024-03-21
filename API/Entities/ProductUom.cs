@@ -73,6 +73,34 @@ namespace HealthCare.Entities
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
+        public ICollection<InvoiceLine>? InvoiceLine { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
         public ICollection<Product>? Product { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<ProductBatch>? ProductBatch { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<GoodsReturnItem>? GoodsReturnItem { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<PriceListItem>? PriceListItem { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<PurchaseOrderLine>? PurchaseOrderLine { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<RequisitionLine>? RequisitionLine { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<StockAdjustmentItem>? StockAdjustmentItem { get; set; }
     }
 }

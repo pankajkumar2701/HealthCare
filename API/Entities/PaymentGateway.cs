@@ -11,8 +11,9 @@ namespace HealthCare.Entities
     public class PaymentGateway
     {
         /// <summary>
-        /// Id of the PaymentGateway 
+        /// Primary key for the PaymentGateway 
         /// </summary>
+        [Key]
         public Guid? Id { get; set; }
         /// <summary>
         /// TenantId of the PaymentGateway 

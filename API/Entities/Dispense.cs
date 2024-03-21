@@ -11,8 +11,9 @@ namespace HealthCare.Entities
     public class Dispense
     {
         /// <summary>
-        /// Id of the Dispense 
+        /// Primary key for the Dispense 
         /// </summary>
+        [Key]
         public Guid? Id { get; set; }
         /// <summary>
         /// TenantId of the Dispense 
@@ -97,6 +98,36 @@ namespace HealthCare.Entities
         [ForeignKey("Location")]
         public Location? LocationLocation { get; set; }
         /// <summary>
+        /// Foreign key referencing the DispenseActivityHistory to which the Dispense belongs 
+        /// </summary>
+        public Guid? DispenseActivityHistory { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated DispenseActivityHistory
+        /// </summary>
+        [ForeignKey("DispenseActivityHistory")]
+        public DispenseActivityHistory? DispenseActivityHistoryDispenseActivityHistory { get; set; }
+        /// <summary>
+        /// Foreign key referencing the DispenseItem to which the Dispense belongs 
+        /// </summary>
+        public Guid? DispenseItems { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated DispenseItem
+        /// </summary>
+        [ForeignKey("DispenseItems")]
+        public DispenseItem? DispenseItemsDispenseItem { get; set; }
+        /// <summary>
+        /// Foreign key referencing the PatientPharmacyQueue to which the Dispense belongs 
+        /// </summary>
+        public Guid? PatientPharmacyQueues { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated PatientPharmacyQueue
+        /// </summary>
+        [ForeignKey("PatientPharmacyQueues")]
+        public PatientPharmacyQueue? PatientPharmacyQueuesPatientPharmacyQueue { get; set; }
+        /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Visit>? Visit { get; set; }
@@ -104,5 +135,17 @@ namespace HealthCare.Entities
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Invoice>? Invoice { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<DispenseActivityHistory>? DispenseActivityHistory { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<DispenseItem>? DispenseItem { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<PatientPharmacyQueue>? PatientPharmacyQueue { get; set; }
     }
 }

@@ -22,6 +22,8 @@
         margin-right: -10px;
 
         .action-button {
+            color: var(--color-5);
+
             .mat-icon {
                 font-size: 17px !important;
 
@@ -73,6 +75,8 @@
 
     .filter-icon {
         cursor: pointer;
+        border: none;
+        background-color: transparent;
     }
 
     .clear-filter {
@@ -89,6 +93,8 @@
         box-shadow: rgba(0, 0, 0, 0) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 2px 6px;
         padding: 25px 15px 25px 15px;
         z-index: 999;
+        max-height: 400px;
+        overflow: auto;
 
         .filter-data {
             margin: 0px 15px 20px 0px;

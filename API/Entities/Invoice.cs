@@ -151,6 +151,16 @@ namespace HealthCare.Entities
         [ForeignKey("ReferredById")]
         public Address? ReferredByIdAddress { get; set; }
         /// <summary>
+        /// Foreign key referencing the InvoiceFile to which the Invoice belongs 
+        /// </summary>
+        public Guid? InvoiceFiles { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated InvoiceFile
+        /// </summary>
+        [ForeignKey("InvoiceFiles")]
+        public InvoiceFile? InvoiceFilesInvoiceFile { get; set; }
+        /// <summary>
         /// ReferenceNumber of the Invoice 
         /// </summary>
         public string? ReferenceNumber { get; set; }
@@ -168,6 +178,16 @@ namespace HealthCare.Entities
         /// </summary>
         [ForeignKey("PayorId")]
         public Address? PayorIdAddress { get; set; }
+        /// <summary>
+        /// Foreign key referencing the InvoiceLine to which the Invoice belongs 
+        /// </summary>
+        public Guid? InvoiceLineId { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated InvoiceLine
+        /// </summary>
+        [ForeignKey("InvoiceLineId")]
+        public InvoiceLine? InvoiceLine { get; set; }
         /// <summary>
         /// PlaceOfSupply of the Invoice 
         /// </summary>
@@ -214,6 +234,14 @@ namespace HealthCare.Entities
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Visit>? Visit { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<InvoiceLine>? InvoiceLine { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<InvoiceFile>? InvoiceFile { get; set; }
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>

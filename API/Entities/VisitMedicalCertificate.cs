@@ -88,6 +88,16 @@ namespace HealthCare.Entities
         /// </summary>
         public string? ProductName { get; set; }
         /// <summary>
+        /// Foreign key referencing the InvoiceLine to which the VisitMedicalCertificate belongs 
+        /// </summary>
+        public Guid? InvoiceLineId { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated InvoiceLine
+        /// </summary>
+        [ForeignKey("InvoiceLineId")]
+        public InvoiceLine? InvoiceLine { get; set; }
+        /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Visit>? Visit { get; set; }

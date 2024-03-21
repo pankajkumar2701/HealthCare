@@ -14,9 +14,11 @@ namespace HealthCare.Entities
         /// TenantId of the PatientComorbidity 
         /// </summary>
         public Guid? TenantId { get; set; }
+
         /// <summary>
-        /// Id of the PatientComorbidity 
+        /// Primary key for the PatientComorbidity 
         /// </summary>
+        [Key]
         public Guid? Id { get; set; }
 
         /// <summary>
@@ -26,9 +28,8 @@ namespace HealthCare.Entities
         public string Name { get; set; }
 
         /// <summary>
-        /// Primary key for the PatientComorbidity 
+        /// Required field Sequence of the PatientComorbidity 
         /// </summary>
-        [Key]
         [Required]
         public int Sequence { get; set; }
         /// <summary>

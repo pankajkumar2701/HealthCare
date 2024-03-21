@@ -41,5 +41,9 @@ namespace HealthCare.Entities
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Patient>? Patient { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<PriceListComponent>? PriceListComponent { get; set; }
     }
 }

@@ -227,6 +227,16 @@ namespace HealthCare.Entities
         [ForeignKey("PaymentGateways")]
         public PaymentGateway? PaymentGatewaysPaymentGateway { get; set; }
         /// <summary>
+        /// Foreign key referencing the TokenManagement to which the Appointment belongs 
+        /// </summary>
+        public Guid? TokenManagement { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated TokenManagement
+        /// </summary>
+        [ForeignKey("TokenManagement")]
+        public TokenManagement? TokenManagementTokenManagement { get; set; }
+        /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Visit>? Visit { get; set; }

@@ -19,7 +19,7 @@ namespace HealthCare.Entities
         /// Primary key for the Patient 
         /// </summary>
         [Key]
-        public Guid? PatientId { get; set; }
+        public Guid? Id { get; set; }
         /// <summary>
         /// Code of the Patient 
         /// </summary>
@@ -255,15 +255,15 @@ namespace HealthCare.Entities
         [ForeignKey("PatientStatistics")]
         public PatientStatistics? PatientStatisticsPatientStatistics { get; set; }
         /// <summary>
-        /// Foreign key referencing the PatientPatientCategory to which the Patient belongs 
+        /// Foreign key referencing the PatientCategory to which the Patient belongs 
         /// </summary>
-        public Guid? PatientPatientCategories { get; set; }
+        public Guid? PatientCategories { get; set; }
 
         /// <summary>
-        /// Navigation property representing the associated PatientPatientCategory
+        /// Navigation property representing the associated PatientCategory
         /// </summary>
-        [ForeignKey("PatientPatientCategories")]
-        public PatientPatientCategory? PatientPatientCategoriesPatientPatientCategory { get; set; }
+        [ForeignKey("PatientCategories")]
+        public PatientCategory? PatientCategoriesPatientCategory { get; set; }
         /// <summary>
         /// Foreign key referencing the PatientComorbidity to which the Patient belongs 
         /// </summary>
@@ -369,7 +369,7 @@ namespace HealthCare.Entities
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
-        public ICollection<PatientPatientCategory>? PatientPatientCategory { get; set; }
+        public ICollection<PatientCategory>? PatientCategory { get; set; }
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
@@ -425,6 +425,10 @@ namespace HealthCare.Entities
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
+        public ICollection<PatientPharmacyQueue>? PatientPharmacyQueue { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
         public ICollection<PaymentGateway>? PaymentGateway { get; set; }
         /// <summary>
         /// Collection navigation property representing associated 
@@ -442,6 +446,10 @@ namespace HealthCare.Entities
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Appointment>? Appointment { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<TokenManagement>? TokenManagement { get; set; }
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>

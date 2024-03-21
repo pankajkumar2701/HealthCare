@@ -29,9 +29,15 @@ namespace HealthCare.Entities
         /// </summary>
         public bool? Default { get; set; }
         /// <summary>
-        /// ProductCategoryId of the Product 
+        /// Foreign key referencing the ProductCategory to which the Product belongs 
         /// </summary>
         public Guid? ProductCategoryId { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated ProductCategory
+        /// </summary>
+        [ForeignKey("ProductCategoryId")]
+        public ProductCategory? ProductCategory { get; set; }
         /// <summary>
         /// ProductType of the Product 
         /// </summary>
@@ -269,9 +275,37 @@ namespace HealthCare.Entities
         [ForeignKey("ProductUoms")]
         public ProductUom? ProductUomsProductUom { get; set; }
         /// <summary>
+        /// Foreign key referencing the FinanceSetting to which the Product belongs 
+        /// </summary>
+        public Guid? FinanceSettings { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated FinanceSetting
+        /// </summary>
+        [ForeignKey("FinanceSettings")]
+        public FinanceSetting? FinanceSettingsFinanceSetting { get; set; }
+        /// <summary>
+        /// Foreign key referencing the ProductBatch to which the Product belongs 
+        /// </summary>
+        public Guid? ProductBatch { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated ProductBatch
+        /// </summary>
+        [ForeignKey("ProductBatch")]
+        public ProductBatch? ProductBatchProductBatch { get; set; }
+        /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<VisitMedicalCertificate>? VisitMedicalCertificate { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<InvoiceLine>? InvoiceLine { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<DispenseItem>? DispenseItem { get; set; }
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
@@ -280,6 +314,14 @@ namespace HealthCare.Entities
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Investigation>? Investigation { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<ProductBatch>? ProductBatch { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<FinanceSetting>? FinanceSetting { get; set; }
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>
@@ -300,5 +342,29 @@ namespace HealthCare.Entities
         /// Collection navigation property representing associated 
         /// </summary>
         public ICollection<Procedure>? Procedure { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<GoodsReceiptItem>? GoodsReceiptItem { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<GoodsReturnItem>? GoodsReturnItem { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<PriceListItem>? PriceListItem { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<PurchaseOrderLine>? PurchaseOrderLine { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<RequisitionLine>? RequisitionLine { get; set; }
+        /// <summary>
+        /// Collection navigation property representing associated 
+        /// </summary>
+        public ICollection<StockAdjustmentItem>? StockAdjustmentItem { get; set; }
     }
 }

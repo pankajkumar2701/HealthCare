@@ -79,9 +79,15 @@ namespace HealthCare.Entities
         /// </summary>
         public string? ProductName { get; set; }
         /// <summary>
-        /// InvoiceLineId of the VisitInvestigation 
+        /// Foreign key referencing the InvoiceLine to which the VisitInvestigation belongs 
         /// </summary>
         public Guid? InvoiceLineId { get; set; }
+
+        /// <summary>
+        /// Navigation property representing the associated InvoiceLine
+        /// </summary>
+        [ForeignKey("InvoiceLineId")]
+        public InvoiceLine? InvoiceLine { get; set; }
         /// <summary>
         /// Collection navigation property representing associated 
         /// </summary>

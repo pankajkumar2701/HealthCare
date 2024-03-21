@@ -18,9 +18,11 @@ namespace HealthCare.Entities
         /// TenantId of the VisitMode 
         /// </summary>
         public Guid? TenantId { get; set; }
+
         /// <summary>
-        /// Id of the VisitMode 
+        /// Primary key for the VisitMode 
         /// </summary>
+        [Key]
         public Guid? Id { get; set; }
 
         /// <summary>
